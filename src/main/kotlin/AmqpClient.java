@@ -8,7 +8,7 @@ import java.util.concurrent.TimeoutException;
 
 public class AmqpClient {
     static final String EXCHANGE_NAME = "messenger.topic";
-    private static final String QUEUE_NAME = "services";
+    static final String SERVICE_ROUTING_KEY = "services";
     private final String name;
     private Connection connection = null;
     private MessageSender messageSender = new MessageSenderStub();
@@ -55,13 +55,13 @@ public class AmqpClient {
 
             messageSender = new MessageSenderImpl(channel);
 
-            channel.queueDeclare(QUEUE_NAME, true, true, true, null);
-            channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, QUEUE_NAME);
+            channel.queueDeclare(SERVICE_ROUTING_KEY, true, true, true, null);
+            channel.queueBind(SERVICE_ROUTING_KEY, EXCHANGE_NAME, SERVICE_ROUTING_KEY);
             channel.basicQos(1);
 
             MessageConsumer consumer = new MessageConsumer(channel);
 
-            channel.basicConsume(QUEUE_NAME, true, consumer);
+            channel.basicConsume(SERVICE_ROUTING_KEY, true, consumer);
 
             consumer.setListener(messageHandler);
             messageHandler.setMessageSender(messageSender);

@@ -21,6 +21,7 @@ public class MessageSenderImpl implements MessageSender {
         }
         AMQP.BasicProperties replyProps = new AMQP.BasicProperties
                 .Builder()
+                .replyTo(AmqpClient.SERVICE_ROUTING_KEY)
                 .correlationId(corrId)
                 .build();
 
