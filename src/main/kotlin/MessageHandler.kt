@@ -11,7 +11,8 @@ import java.util.*
 /**
  * Created by grishberg on 21.05.18.
  */
-class MessageHandler(private val chatManager: ChatManager) : OnNewMessageListener {
+class MessageHandler(private val chatManager: ChatManager,
+                     private val userManager: UserManager) : OnNewMessageListener {
     var messageSender: MessageSender = MessageSenderStub()
 
     private val gson: Gson = Gson()
@@ -33,6 +34,8 @@ class MessageHandler(private val chatManager: ChatManager) : OnNewMessageListene
     }
 
     private fun getChatList(cmd: ChatListCommand, rk: String?) {
+        userManager.addNewUserIfNotExists(cmd.userId)
+
         val response = ChatListCommand(GET_CHAT_LIST, cmd.userId, chatManager.getChatList(cmd.userId))
                 .toByteArray(gson)
         messageSender.sendMessage(response, rk, null)

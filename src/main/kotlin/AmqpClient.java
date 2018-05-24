@@ -21,8 +21,10 @@ public class AmqpClient {
 
     public static void main(String[] argv) {
 
-        ChatManager chatManager = new ChatManager();
-        MessageHandler messageHandler = new MessageHandler(chatManager);
+        UserManager userManager = new UserManager();
+        ChatManager chatManager = new ChatManager(userManager);
+        addFakeData(userManager, chatManager);
+        MessageHandler messageHandler = new MessageHandler(chatManager, userManager);
         AmqpClient client = new AmqpClient("service", messageHandler);
         client.connect();
 
@@ -75,5 +77,13 @@ public class AmqpClient {
         @Override
         public void sendMessage(byte[] message, String userId, String corrId)
                 throws IOException {/* stub */}
+    }
+
+    /**
+     * Add fake data there.
+     */
+    private static void addFakeData(UserManager userManager, ChatManager chatManager) {
+        userManager.addNewUserIfNotExists("b81c268cdba3a902");
+        chatManager.createChat("b81c268cdba3a902", "Test Chat");
     }
 }
