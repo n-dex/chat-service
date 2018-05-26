@@ -1,6 +1,7 @@
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import models.Chat;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -67,10 +68,15 @@ public class AmqpClient {
 
             consumer.setListener(messageHandler);
             messageHandler.setMessageSender(messageSender);
+            onConnected();
             System.out.println("setup ok");
         } catch (IOException | TimeoutException e) {
             e.printStackTrace();
         }
+    }
+
+    private void onConnected() {
+
     }
 
     private static class MessageSenderStub implements MessageSender {
@@ -85,5 +91,9 @@ public class AmqpClient {
     private static void addFakeData(UserManager userManager, ChatManager chatManager) {
         userManager.addNewUserIfNotExists("b81c268cdba3a902");
         chatManager.createChat("b81c268cdba3a902", "Test Chat");
+
+        userManager.addNewUserIfNotExists("11111111111");
+        Chat chat = chatManager.createChat("11111111111", "Test Chat for 111");
+        chatManager.inviteToChat("b81c268cdba3a902", chat.getId(), "11111111111");
     }
 }
