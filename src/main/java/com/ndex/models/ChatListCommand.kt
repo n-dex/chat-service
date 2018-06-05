@@ -1,4 +1,4 @@
-package models
+package com.ndex.models
 
 import com.google.gson.Gson
 import java.util.*

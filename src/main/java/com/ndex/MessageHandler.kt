@@ -1,10 +1,12 @@
+package com.ndex
+
 import com.google.gson.Gson
-import models.Chat
-import models.ChatListCommand
-import models.ChatListCommand.Companion.ASSIGN_TO_CHAT
-import models.ChatListCommand.Companion.CREATE_CHAT
-import models.ChatListCommand.Companion.GET_CHAT_LIST
-import models.ChatListCommand.Companion.INVITE_TO_CHAT
+import com.ndex.models.Chat
+import com.ndex.models.ChatListCommand
+import com.ndex.models.ChatListCommand.Companion.ASSIGN_TO_CHAT
+import com.ndex.models.ChatListCommand.Companion.CREATE_CHAT
+import com.ndex.models.ChatListCommand.Companion.GET_CHAT_LIST
+import com.ndex.models.ChatListCommand.Companion.INVITE_TO_CHAT
 import java.nio.charset.Charset
 import java.util.*
 

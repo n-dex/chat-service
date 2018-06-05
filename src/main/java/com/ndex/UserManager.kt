@@ -1,4 +1,6 @@
-import models.User
+package com.ndex
+
+import com.ndex.models.User
 import java.util.*
 
 /**

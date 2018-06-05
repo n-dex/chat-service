@@ -1,4 +1,4 @@
-package models
+package com.ndex.models
 
 import java.util.*
 

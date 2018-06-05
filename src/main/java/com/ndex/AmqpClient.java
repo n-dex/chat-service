@@ -1,7 +1,9 @@
+package com.ndex;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import models.Chat;
+import com.ndex.models.Chat;
 
 import java.io.IOException;
 import java.util.Scanner;

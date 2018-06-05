@@ -1,3 +1,5 @@
+package com.ndex;
+
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 

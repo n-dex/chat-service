@@ -1,4 +1,6 @@
-import models.Chat
+package com.ndex
+
+import com.ndex.models.Chat
 import java.util.*
 
 /**

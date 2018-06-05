@@ -1,4 +1,4 @@
-package models
+package com.ndex.models
 
 /**
  * Created by grishberg on 20.05.18.
