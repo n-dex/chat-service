@@ -37,6 +37,9 @@ public class AmqpClient {
 
     public void connect() {
         ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("85.143.222.18");
+        factory.setPassword("msgr");
+        factory.setUsername("rabbitmq");
         new Thread(() -> doConnect(factory)).start();
     }
 
@@ -49,7 +52,6 @@ public class AmqpClient {
     }
 
     private void doConnect(ConnectionFactory factory) {
-        factory.setHost("localhost");
         try {
             connection = factory.newConnection();
 
