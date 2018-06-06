@@ -1,9 +1,9 @@
 package com.ndex;
 
+import com.ndex.models.Chat;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import com.ndex.models.Chat;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -93,11 +93,13 @@ public class AmqpClient {
      * Add fake data there.
      */
     private static void addFakeData(UserManager userManager, ChatManager chatManager) {
-        userManager.addNewUserIfNotExists("b81c268cdba3a902");
-        chatManager.createChat("b81c268cdba3a902", "Test Chat");
+        userManager.addNewUserIfNotExists("1");
+        Chat firstChat = chatManager.createChat("1", "Test Chat");
 
-        userManager.addNewUserIfNotExists("11111111111");
-        Chat chat = chatManager.createChat("11111111111", "Test Chat for 111");
-        chatManager.inviteToChat("b81c268cdba3a902", chat.getId(), "11111111111");
+        userManager.addNewUserIfNotExists("2");
+        Chat secondChat = chatManager.createChat("2", "Test Chat for 1");
+        
+        chatManager.inviteToChat("1", secondChat.getId(), "2");
+        chatManager.inviteToChat("2", firstChat.getId(), "1");
     }
 }
